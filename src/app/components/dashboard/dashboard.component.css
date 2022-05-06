@@ -1,0 +1,92 @@
+main {
+    color: white;
+}
+
+.filter {
+    margin: 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    display: flex;
+    background-color: hsl(209, 23%, 22%);
+    border-radius: 5px;
+    width: 21.5%;
+    /* align-items: center; */
+}
+
+.search .search-icon {
+    width: 25px;
+    padding-left: 10px;
+    padding-top: 9px;
+}
+
+.search .search-box {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    background-color: hsl(209, 23%, 22%);
+}
+
+.search .search-box::placeholder {
+    color: white;
+}
+
+.filter select {
+    padding: 10px 15px;
+    outline: none;
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 21.5%;
+}
+
+.filter option {
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.card {
+    background-color: hsl(209, 23%, 22%);
+    width: calc(25% - 30px);
+    margin: 0 15px 30px;
+}
+
+.flag {
+    position: relative;
+    padding-bottom: 60%;
+}
+
+.flag img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.country-summary {
+    padding: 20px;
+}
+
+.country-summary h2 {
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.ngx-pagination li a {
+    border: 1px solid #2199e8;
+}
