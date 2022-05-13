@@ -91,7 +91,7 @@ main {
     left: 45%;
 }
 
-.xyz {
+.section {
     min-height: calc(100vh - 75px);
     display: flex;
     flex-direction: column;
@@ -146,6 +146,7 @@ main {
     top: 50%;
     left: 48%;
     right: 48%;
+
 }
 
 .loader {

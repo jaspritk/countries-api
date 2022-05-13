@@ -32,23 +32,19 @@
                             <p><strong>Top Level Domain:</strong> {{detail.topLevelDomain[0]}}</p>
                             <p><strong>Timezone:</strong> {{detail.timezones[0]}}</p>
                             <p><strong>Currencies:</strong> {{detail.currencies[0].name}}</p>
-                            <p>
-                                <strong>Languages: </strong>
-                                <span *ngFor="let language of languages">{{language.name}}&nbsp; </span>
-                            </p>
+                            <h4>{{languages.length}}</h4>
+                            <ng-container *ngIf="languages.length != 0">
+                                <strong>Languages:</strong>
+                                <p *ngFor="let language of languages"> {{ language.name }}</p>
+                            </ng-container>
                         </div>
                     </div>
-                    <!-- <div class="border-countries" *ngFor="let borderCountry of borderCountries">
+                    <ng-container class="border-countries" *ngIf="borderCountries.length != 0">
                         <strong>Border Countries: </strong>
-                        <button (click)="gotoDetails(detail)" *ngIf="borderCountry != 0">{{borderCountry}}</button>
-                    </div> -->
-                    <div class="border-countries">
-                        <strong>Border Countries: </strong>
-                        <ng-container *ngFor="let borderCountry of borderCountries">
-                            <p *ngIf="borderCountry != 0; else elseBlock">{{borderCountry}}</p>
-                            <ng-template #elseBlock>no</ng-template>
-                        </ng-container>
-                    </div>
+                        <div *ngFor="let borderCountry of borderCountries">
+                            <p *ngIf="borderCountry != 0">{{borderCountry}}</p>
+                        </div>
+                    </ng-container>
                 </div>
             </div>
         </div>

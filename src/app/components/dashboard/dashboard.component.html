@@ -8,8 +8,8 @@
   <main>
 
     <div class="container">
-      <div class="xyz">
-        <div class="abc">
+      <div class="section">
+        <div class="subsection">
           <form class="filter">
             <div class="search">
               <input type="text" name="search" id="searchByName" class="search-box"
@@ -23,7 +23,7 @@
           </form>
           <!-- CARDS -->
           <div class="cards"
-            *ngIf="( cards | filter: searchByName | paginate: { itemsPerPage: 8, currentPage: p}) as result">
+            *ngIf="( cards | filter: searchByName | paginate: { itemsPerPage: 8, currentPage: searchByName?1:p}) as result">
             <div class="card" *ngFor="let card of result; let i = index">
               <div class="flag">
                 <img src="{{ card.flags.png }}" alt="flag" (click)="gotoDetails(card)" />
@@ -31,7 +31,10 @@
               <div class="country-summary">
                 <h2 (click)="gotoDetails(card)">{{ card.name }}</h2>
                 <p><strong>Population:</strong> {{ card.population.toLocaleString('en-IN') }}</p>
-                <p><strong>Region:</strong> {{ card.region }}</p>
+                <p *ngIf="filterByRegion == 'select'; else subregion "><strong>Region:</strong> {{ card.region }}</p>
+                <ng-template #subregion>
+                  <p><strong>Subregion:</strong> {{ card.subregion }}</p>
+                </ng-template>
                 <p><strong>Capital:</strong> {{ card.capital }}</p>
               </div>
             </div>

@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   cards: any = [];
   copyCards: any = [];
   regionList: any = [];
+  // subregionlist: any = [];
   searchByName: any;
   filterByRegion: any = "select";
   p: number = 1;
@@ -53,6 +54,12 @@ export class DashboardComponent implements OnInit {
     this.regionList = [...new Set(this.cards.map((item: any) => item.region))];
     this.regionList.sort();
   }
+
+  // subRegion() {
+  //   console.log("subregion", this.cards)
+  //   this.subregionlist = [...new Set(this.cards.map((item: any) => item.subregion))];
+  //   this.subregionlist.sort();
+  // }
 
   onChange(value: any) {
     let result = this.copyCards.filter((s: any) => {
