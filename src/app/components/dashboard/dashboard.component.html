@@ -1,43 +1,50 @@
-<main>
-    <!-- <app-filter></app-filter> -->
+<!-- LOADER -->
+
+<div class="main-loader" *ngIf="loader">
+  <div class="loader"></div>
+</div>
+
+<div *ngIf="loader===false">
+  <main>
 
     <div class="container">
-        <form class="filter">
+      <div class="xyz">
+        <div class="abc">
+          <form class="filter">
             <div class="search">
-                <!-- <img src="../../assets/magnifying-glass-solid.svg" alt="" class="search-icon"> -->
-                <i class="fa fa-search search-icon"></i>
-                <input type="text" name="search" id="searchByName" class="search-box"
-                    placeholder="Search for a country..." [(ngModel)]="searchByName">
+              <input type="text" name="search" id="searchByName" class="search-box"
+                placeholder="Search for a country..." [(ngModel)]="searchByName" />
             </div>
-
-            <select name="" id="">
-                <option value="" disabled selected hidden>Filter by region</option>
-                <option value="africa">Africa</option>
-                <option value="America">America</option>
-                <option value="asia">Asia</option>
-                <option value="europe">Europe</option>
-                <option value="oceania">Oceania</option>
+            <select name="selectRegion" id="selectRegion" [(ngModel)]="filterByRegion"
+              (ngModelChange)="onChange($event)">
+              <option value="select">Filter by region</option>
+              <option value="{{i}}" *ngFor="let i of regionList ">{{i}}</option>
             </select>
-        </form>
-
-        <!-- CARDS -->
-
-        <div class="cards">
-            <div class="card"
-                *ngFor="let card of cards | filter:searchByName | paginate:{ itemsPerPage: 8, currentPage: p }"
-                (click)="gotoDetails(card)">
-                <div class="flag">
-                    <img src={{card.flags.png}} alt="flag">
-                </div>
-                <div class="country-summary">
-                    <h2>{{card.name}}</h2>
-                    <p> <strong>Population:</strong> {{card.population}} </p>
-                    <p> <strong>Region:</strong> {{card.region}} </p>
-                    <p> <strong>Capital:</strong> {{card.capital}} </p>
-                </div>
+          </form>
+          <!-- CARDS -->
+          <div class="cards"
+            *ngIf="( cards | filter: searchByName | paginate: { itemsPerPage: 8, currentPage: p}) as result">
+            <div class="card" *ngFor="let card of result; let i = index">
+              <div class="flag">
+                <img src="{{ card.flags.png }}" alt="flag" (click)="gotoDetails(card)" />
+              </div>
+              <div class="country-summary">
+                <h2 (click)="gotoDetails(card)">{{ card.name }}</h2>
+                <p><strong>Population:</strong> {{ card.population.toLocaleString('en-IN') }}</p>
+                <p><strong>Region:</strong> {{ card.region }}</p>
+                <p><strong>Capital:</strong> {{ card.capital }}</p>
+              </div>
             </div>
+            <div class="status" id="status">
+              <p *ngIf="result.length == 0">No country found.</p>
+            </div>
+          </div>
         </div>
-        <pagination-controls (pageChange)="p = $event" class="ngx-pagination">
-        </pagination-controls>
+        <!-- PAGINATION -->
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event" class="pagination-control"></pagination-controls>
+        </div>
+      </div>
     </div>
-</main>
+  </main>
+</div>

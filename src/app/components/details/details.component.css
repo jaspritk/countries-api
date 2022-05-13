@@ -1,3 +1,125 @@
 main {
-    color: white;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.back-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: var(--text-color);
+    background-color: var(--bg-btn);
+    cursor: pointer;
+    text-align: center;
+    margin-top: 40px;
+    width: 90px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 5%;
+    margin-top: 40px;
+}
+
+.details .flag {
+    width: 500px;
+    object-fit: cover;
+    border: 1px solid var(--bg-search);
+}
+
+.details .country-name {
+    padding: 15px 0 25px;
+}
+
+.details .country-details {
+    display: flex;
+    gap: 80px
+}
+
+.details p {
+    margin-top: 7px;
+}
+
+.border-countries {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.border-countries p {
+    margin: 5px 5px;
+    padding: 5px 20px;
+    background-color: var(--bg-btn);
+    border-radius: 5px;
+    color: var(--text-color);
+}
+
+@media screen and (max-width:767px) {
+    .details {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .details .flag {
+        width: 100%;
+    }
+
+    .details .country-name {
+        padding: 0;
+    }
+
+    .details .country-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .details .country-name {
+        padding: 20px 0 25px;
+    }
+
+    .border-countries {
+        margin-bottom: 50px;
+    }
+}
+
+.main-loader {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    right: 48%;
+}
+
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--bg-loader);
+    box-shadow: 0 0 0 0 var(--bs1-loader);
+    animation: pl2 1.5s infinite linear;
+    position: relative;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 var(--bs1-loader);
+    animation: inherit;
+    animation-delay: -0.5s;
+}
+
+.loader:after {
+    animation-delay: -1s;
+}
+
+@keyframes pl2 {
+    100% {
+        box-shadow: 0 0 0 40px var(--bs2-loader);
+    }
 }

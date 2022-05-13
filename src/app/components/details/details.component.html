@@ -1,43 +1,56 @@
-<!-- <p>details works!</p> -->
+<!-- LOADER -->
 
-<main>
-    <div class="container">
-        <div class="flag">
-            <img src="{{detail[0]?.flags.png}}" alt="">
-        </div>
-        <div>
-            <div>
-                <h2>{{detail[0]?.name}}</h2>
-                <p>Native Name: {{detail[0]?.nativeName}}</p>
-                <p>Population: {{detail[0]?.population}}</p>
-                <p>Region: {{detail[0]?.region}}</p>
-                <p>Subregion: {{detail[0]?.subregion}}</p>
-                <p>Capital: {{detail[0]?.capital}}</p>
+<div class="main-loader" *ngIf="loader">
+    <div class="loader"></div>
+</div>
+
+<div *ngIf="loader===false">
+    <main>
+        <div class="container">
+
+            <div class="back">
+                <button class="back-btn" (click)="gotoDashboard()">Back</button>
             </div>
-            <div>
-                <p>Top Level Domain: {{detail[0]?.topLevelDomain[0]}}</p>
-                <p>Currencies: {{detail[0]?.currencies[0].name}}</p>
-                <p>Languages: <span>{{detail[0]?.languages[0].name}}</span>
-                    <span> {{detail[0]?.languages[1].name}}</span>
-                    <span> {{detail[0]?.languages[2].name}}</span>
-                </p>
-            </div>
-            <div>
-                border-countries
+
+            <div class="details">
+                <div>
+                    <img src="{{detail.flags.svg}}" alt="flag" class="flag">
+                </div>
+                <div class="country-content">
+                    <div class="country-name">
+                        <h2>{{detail.name}}</h2>
+                    </div>
+                    <div class="country-details">
+                        <div>
+                            <p><strong>Native Name:</strong> {{detail.nativeName}}</p>
+                            <p><strong>Population:</strong> {{detail.population.toLocaleString('en-IN')}}</p>
+                            <p><strong>Region:</strong> {{detail.region}}</p>
+                            <p><strong>Subregion:</strong> {{detail.subregion}}</p>
+                            <p><strong>Capital:</strong> {{detail.capital}}</p>
+                        </div>
+                        <div>
+                            <p><strong>Top Level Domain:</strong> {{detail.topLevelDomain[0]}}</p>
+                            <p><strong>Timezone:</strong> {{detail.timezones[0]}}</p>
+                            <p><strong>Currencies:</strong> {{detail.currencies[0].name}}</p>
+                            <p>
+                                <strong>Languages: </strong>
+                                <span *ngFor="let language of languages">{{language.name}}&nbsp; </span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <div class="border-countries" *ngFor="let borderCountry of borderCountries">
+                        <strong>Border Countries: </strong>
+                        <button (click)="gotoDetails(detail)" *ngIf="borderCountry != 0">{{borderCountry}}</button>
+                    </div> -->
+                    <div class="border-countries">
+                        <strong>Border Countries: </strong>
+                        <ng-container *ngFor="let borderCountry of borderCountries">
+                            <p *ngIf="borderCountry != 0; else elseBlock">{{borderCountry}}</p>
+                            <ng-template #elseBlock>no</ng-template>
+                        </ng-container>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-
-<div class="cards">
-    <!-- <div class="card" *ngFor="let card of detail">
-
-        <div class="country-summary">
-            <h2>{{card.name}}</h2>
-            <p> <strong>Population:</strong> {{card.population}} </p>
-            <p> <strong>Region:</strong> {{card.region}} </p>
-            <p> <strong>Capital:</strong> {{card.capital}} </p>
-        </div>
-    </div> -->
-
+    </main>
 </div>
