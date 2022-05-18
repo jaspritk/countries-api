@@ -1,8 +1,9 @@
 <header>
     <div class="container">
         <div class="navigation">
-            <h1>Where in the world?</h1>
-            <button (click)="toggleDarkTheme()" class="toogle">Toggle themes</button>
+            <h1 i18n>Where in the world?</h1>
+            <img [src]="images[imageIndex]" alt="" class="sun-icon" width="30px" (click)="toggleTheme()">
+
         </div>
     </div>
 </header>

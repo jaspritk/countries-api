@@ -8,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
+  images: any = [];
+  imageIndex: any = 0;
 
   ngOnInit(): void {
+
+    this.images = ['./assets/light.png', './assets/dark.png']
+
   }
 
-  toggleDarkTheme(): void {
+  toggleTheme() {
+    this.imageIndex++;
+    if (this.imageIndex === this.images.length) {
+      this.imageIndex = 0;
+    }
     document.body.classList.toggle('light-theme');
   }
 

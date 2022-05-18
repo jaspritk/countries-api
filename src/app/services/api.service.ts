@@ -13,7 +13,7 @@ export class ApiService {
     return this.http.get('https://restcountries.com/v2/all');
   }
 
-  getAllDetails(code: any) {
+  getCountryDetails(code: any) {
     return this.http.get(`https://restcountries.com/v2/alpha/${code}`);
   }
 

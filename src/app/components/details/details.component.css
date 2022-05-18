@@ -21,7 +21,7 @@ main {
     justify-content: space-between;
 
     gap: 5%;
-    margin-top: 40px;
+    margin: 40px 0;
 }
 
 .details .flag {
@@ -39,13 +39,25 @@ main {
     gap: 80px
 }
 
-.details p {
+.details .para {
     margin-top: 7px;
+}
+
+.details .lang {
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.details .lang:last-child::after {
+    content: ""
 }
 
 .border-countries {
     margin-top: 50px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -56,6 +68,7 @@ main {
     background-color: var(--bg-btn);
     border-radius: 5px;
     color: var(--text-color);
+    cursor: pointer;
 }
 
 @media screen and (max-width:767px) {
@@ -81,9 +94,6 @@ main {
         padding: 20px 0 25px;
     }
 
-    .border-countries {
-        margin-bottom: 50px;
-    }
 }
 
 .main-loader {

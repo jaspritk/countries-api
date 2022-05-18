@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { Console } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 
-// import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,15 +13,16 @@ export class DashboardComponent implements OnInit {
   cards: any = [];
   copyCards: any = [];
   regionList: any = [];
-  // subregionlist: any = [];
   searchByName: any;
   filterByRegion: any = "select";
   p: number = 1;
   loader = true;
 
+  detail: any = [];
+
   constructor(private apiService: ApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.allData()
@@ -39,13 +38,9 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  // hideloader() {
-  //   document.getElementById('loading').style.display = 'none';
-  // }
-
   gotoDetails(card: any) {
     this.router.navigate(['/details'], {
-      queryParams: { alpha2Code: card.alpha2Code },
+      queryParams: { code: card.alpha2Code },
     });
   }
 
@@ -54,12 +49,6 @@ export class DashboardComponent implements OnInit {
     this.regionList = [...new Set(this.cards.map((item: any) => item.region))];
     this.regionList.sort();
   }
-
-  // subRegion() {
-  //   console.log("subregion", this.cards)
-  //   this.subregionlist = [...new Set(this.cards.map((item: any) => item.subregion))];
-  //   this.subregionlist.sort();
-  // }
 
   onChange(value: any) {
     let result = this.copyCards.filter((s: any) => {
@@ -70,10 +59,6 @@ export class DashboardComponent implements OnInit {
     if (result.length == 0) {
       result = this.copyCards;
     }
-    // this.router.navigate(['/dashboard'], {
-    //   queryParams: { region: this.cards.region },
-    // });
     this.cards = result;
   }
-
 }

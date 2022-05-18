@@ -22,29 +22,32 @@
                     </div>
                     <div class="country-details">
                         <div>
-                            <p><strong>Native Name:</strong> {{detail.nativeName}}</p>
-                            <p><strong>Population:</strong> {{detail.population.toLocaleString('en-IN')}}</p>
-                            <p><strong>Region:</strong> {{detail.region}}</p>
-                            <p><strong>Subregion:</strong> {{detail.subregion}}</p>
-                            <p><strong>Capital:</strong> {{detail.capital}}</p>
+                            <p class="para"><strong>Native Name:</strong> {{detail?.nativeName}}</p>
+                            <p class="para"><strong>Population:</strong> {{detail?.population.toLocaleString('en-IN')}}
+                            </p>
+                            <p class="para"><strong>Region:</strong> {{detail?.region}}</p>
+                            <p class="para"><strong>Subregion:</strong> {{detail?.subregion}}</p>
+                            <p class="para"><strong>Capital:</strong> {{detail?.capital}}</p>
                         </div>
                         <div>
-                            <p><strong>Top Level Domain:</strong> {{detail.topLevelDomain[0]}}</p>
-                            <p><strong>Timezone:</strong> {{detail.timezones[0]}}</p>
-                            <p><strong>Currencies:</strong> {{detail.currencies[0].name}}</p>
-                            <h4>{{languages.length}}</h4>
-                            <ng-container *ngIf="languages.length != 0">
-                                <strong>Languages:</strong>
-                                <p *ngFor="let language of languages"> {{ language.name }}</p>
-                            </ng-container>
+                            <p class="para"><strong>Top Level Domain:</strong> {{detail?.topLevelDomain[0]}}</p>
+                            <p class="para"><strong>Timezone:</strong> {{detail?.timezones[0]}}</p>
+                            <p class="para"><strong>Currencies:</strong> {{detail?.currencies[0].name}}</p>
+                            <!-- <h4>{{languages.length}}</h4> -->
+                            <!-- <ng-container *ngIf="languages.length != 0"> -->
+                            <div class="lang" *ngIf="languages.length > 0">
+                                <strong>Languages: </strong>
+                                <p *ngFor="let language of languages"> {{ language?.name }},</p>
+                            </div>
+                            <!-- </ng-container> -->
                         </div>
                     </div>
-                    <ng-container class="border-countries" *ngIf="borderCountries.length != 0">
+                    <div class="border-countries" *ngIf="borderCountries.length > 0">
                         <strong>Border Countries: </strong>
                         <div *ngFor="let borderCountry of borderCountries">
-                            <p *ngIf="borderCountry != 0">{{borderCountry}}</p>
+                            <p (click)="gotoCountry(borderCountry)">{{borderCountry}}</p>
                         </div>
-                    </ng-container>
+                    </div>
                 </div>
             </div>
         </div>
